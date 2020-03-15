@@ -14,7 +14,9 @@ public class AppErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = { Exception.class })
     protected ResponseEntity<Mensagem> handleConflict(RuntimeException ex, WebRequest request) {
-        return ResponseEntity.ok(Mensagem.builder().mensagem("Deu erro " + ex.getMessage()).build());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Mensagem.builder().mensagem("Deu erro " + ex.getMessage()).build());
     }
 
 }

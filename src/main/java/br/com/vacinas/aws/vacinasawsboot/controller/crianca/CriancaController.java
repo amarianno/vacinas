@@ -1,6 +1,7 @@
 package br.com.vacinas.aws.vacinasawsboot.controller.crianca;
 
 import br.com.vacinas.aws.vacinasawsboot.Crianca;
+import br.com.vacinas.aws.vacinasawsboot.ErroDeNegocioException;
 import br.com.vacinas.aws.vacinasawsboot.Mensagem;
 import br.com.vacinas.aws.vacinasawsboot.Vacina;
 import br.com.vacinas.aws.vacinasawsboot.negocio.CriancaService;
@@ -31,6 +32,13 @@ public class CriancaController {
         return Mensagem.builder().mensagem(criancaService.salvar(crianca, request.getUserId())).build();
     }
 
+    @GetMapping("/userid/{userId}")
+    public Mensagem buscarCriancaPorUserId(@PathVariable String userId) {
+        return Mensagem
+                .builder()
+                .mensagem(criancaService.buscarCriancaPorUserId(userId))
+                .build();
+    }
 
 
 }
